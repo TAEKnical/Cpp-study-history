@@ -26,6 +26,8 @@ public:
 	Complex operator - (const char* str);
 	Complex operator * (const char* str);
 	Complex operator / (const char* str);
+	
+	friend Complex operator+(const Complex& a, const Complex& b);
 };
 
 Complex::Complex(double real, double img) : real(real), img(img){}
@@ -64,6 +66,11 @@ Complex Complex::operator + (const Complex& c)
 {
 	Complex temp(real+c.real, img+c.img);
 	return temp;
+}
+Complex operator + (const Complex& a, const Complex& b)
+{
+	Complex temp(a);
+	return temp.operator+(b);
 }
 Complex Complex::operator - (const Complex& c)
 {
@@ -165,24 +172,21 @@ Complex Complex:: operator / (const char* str)
 
 int main()
 {
-	Complex a(0, 0);
-
-	a = a + "-1.1 + i3.923";
-
+	/*Complex a(0, 0);
+	a = a + "-1.1+i1.823";
+				//a = a.operator+("-1.1+i1.823");를 컴파일러는 a = a+"-1.1+i1.823"과 같이 해석함.
+				//따라서 a = "-1.1 + i1.823" + a 는 같은 식이지만 180724v 에서는 계산 불가능했음.
 	a.println();
-
 	a = a - "1.2 -i1.823";
-
 	a.println();
-
 	a = a * "2.3+i22";
-
 	a.println();
-
 	a = a / "-12+i55";
-
 	a.println();
-
+	*/
+	Complex a(0,0);
+	a="-1.1+i3.923"+a;
+	a.println();
 }
 
 

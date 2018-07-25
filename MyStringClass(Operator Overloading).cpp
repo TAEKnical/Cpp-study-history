@@ -39,6 +39,7 @@ public:
 	void println();
 
 	bool operator==(MyString& str);
+	char& operator[] (const int index);
 };
 
 MyString::MyString(const char c)
@@ -261,19 +262,16 @@ bool MyString::operator == (MyString &str)
 {
 	return !compare(str);
 }
+char& MyString::operator[] (const int index)
+{
+	return string_content[index];
+}
 
 int main()
 
 {
+	MyString str("abcdef");
+	str[3] = 'c';
 
-	MyString str1("a word");
-	MyString str2("sentence");
-	MyString str3("sentence");
-
-	if(str1 == str2) cout << "str1 and str2 are same" << endl;
-	else cout << "st1 and str2 are different" << endl;
-
-	if(str2 == str3) cout << "str2 and str3 are same" << endl;
-	else cout << "st2 and str3 are different" << endl;
-
+	str.println();
 }
